@@ -58,7 +58,7 @@ public class Offre_Controller {
 	{ return offre_repository.findById(offreId).map(offre -> { 
 		offre_repository.delete(offre); 
 	return ResponseEntity.ok().build();
-	 }).orElseThrow(() -> new IllegalArgumentException("ProviderId " + 
+	 }).orElseThrow(() -> new IllegalArgumentException("offreId " + 
 offreId + " not found"));
 	 }
 	 
