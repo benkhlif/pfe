@@ -1,4 +1,4 @@
-package controllers;
+package com.ParsingCV.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import entities.Condidat;
- import jakarta.validation.Valid;
-import repository.Condidat_Repository;
+import com.ParsingCV.entities.Condidat;
+import com.ParsingCV.repository.Condidat_Repository;
 
+import jakarta.validation.Valid;
+ 
 @Controller
 @RequestMapping("/condidat")
 public class Condidat_Controller {

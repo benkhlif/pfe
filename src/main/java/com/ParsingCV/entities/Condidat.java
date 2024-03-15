@@ -1,4 +1,4 @@
-package entities;
+package com.ParsingCV.entities;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package controllers;
+package com.ParsingCV.controllers;
 
  import java.util.List;
 import java.util.Optional;
@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import entities.Offre;
-import jakarta.validation.Valid;
-import repository.Offre_Repository;
+import com.ParsingCV.entities.Offre;
+import com.ParsingCV.repository.Offre_Repository;
 
+import jakarta.validation.Valid;
+ 
 @Controller
 @RequestMapping("/offre")
 public class Offre_Controller {
