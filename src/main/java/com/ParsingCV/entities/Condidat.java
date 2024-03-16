@@ -2,11 +2,14 @@ package com.ParsingCV.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -38,6 +41,8 @@ public class Condidat {
  	private List<String> competences; 
  	private List<String> formations; 
  	private List<String> experience; 
+ 	
+ 	 
 	
 	public Condidat() {
 		super();
@@ -57,6 +62,10 @@ public class Condidat {
 		this.competences = competences;
 		this.formations = formations;
 		this.experience = experience;
+		
+		
+	
+		
 	}
 	public Long getId_condidat() {
 		return id_condidat;
@@ -126,6 +135,8 @@ public class Condidat {
 	}
 	
 
+@OneToMany(mappedBy = "condidat",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private List<Recrutement> recrutementes;
 	
 	
 	

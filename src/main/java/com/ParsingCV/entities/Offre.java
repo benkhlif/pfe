@@ -3,12 +3,15 @@ package com.ParsingCV.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
  
 @Entity
@@ -37,6 +40,7 @@ private String localisation;
 private String contrat;
 @NotEmpty(message = "La liste de mots-clés ne doit pas être vide")
  private List<String> mot_clés;
+
 
 
 
@@ -149,5 +153,11 @@ public List<String> getMot_clés() {
 public void setMot_clés(List<String> mot_clés) {
 	this.mot_clés = mot_clés;
 }
+
+
+
+@OneToMany(mappedBy = "offre",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private List<Recrutement> recrutementes;
+
 
 }
