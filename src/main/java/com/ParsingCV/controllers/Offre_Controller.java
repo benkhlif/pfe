@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ParsingCV.entities.Offre;
 import com.ParsingCV.repository.Offre_Repository;
@@ -26,18 +27,20 @@ public class Offre_Controller {
 	Offre_Repository offre_repository ;
 	
 	@GetMapping("/ListeOffre")
+    @ResponseBody  
 	public List<Offre> GetAllOffres() {
 	return (List<Offre>) offre_repository.findAll() ; 
 	}
 	@PostMapping("/creerOffre")
-	 public Offre creerOffre(@Valid @RequestBody Offre offre) { return offre_repository.save(offre);
-	 }
+    @ResponseBody  
+	 public Offre creerOffre(@Valid @RequestBody Offre offre) 
+	{ return offre_repository.save(offre);	 }
 	
 	@PutMapping("/{offreId}")
+    @ResponseBody  
 	public Offre updateOffre(@PathVariable Long offreId, @Valid @RequestBody Offre offreRequest) {
 	    return offre_repository.findById(offreId).map(offre -> { 
-	        offre.setId_offre(offreRequest.getId_offre());
-	        offre.setTitre(offreRequest.getTitre());
+ 	        offre.setTitre(offreRequest.getTitre());
 	        offre.setEntreprise(offreRequest.getEntreprise());
 	        offre.setSecteur_d_activite(offreRequest.getSecteur_d_activite());
 	        offre.setDescription(offreRequest.getDescription());
@@ -55,6 +58,7 @@ public class Offre_Controller {
 	}
 
 	@DeleteMapping("/{offreId}")
+    @ResponseBody  
 	public ResponseEntity<?> deleteOffre(@PathVariable Long offreId)
 	{ return offre_repository.findById(offreId).map(offre -> { 
 		offre_repository.delete(offre); 

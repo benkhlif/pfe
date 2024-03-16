@@ -38,10 +38,10 @@ public class Condidat_Controller {
         return condidat_repository.save(condidat);
     }
     
-    @PutMapping("/{condidatId}")
+    @PutMapping("/{id_condidat}")
     @ResponseBody
-    public Condidat updateCondidat(@PathVariable Long condidatId, @RequestBody Condidat condidatRequest) {
-        return condidat_repository.findById(condidatId).map(condidat -> {
+    public Condidat updateCondidat(@PathVariable Long id_condidat, @RequestBody Condidat condidatRequest) {
+        return condidat_repository.findById(id_condidat).map(condidat -> {
             condidat.setNom(condidatRequest.getNom());
             condidat.setPrenom(condidatRequest.getPrenom());
             condidat.setAdresse(condidatRequest.getAdresse());
@@ -53,7 +53,7 @@ public class Condidat_Controller {
             condidat.setFormations(condidatRequest.getFormations());
             condidat.setExperience(condidatRequest.getExperience());
              return condidat_repository.save(condidat);
-        }).orElseThrow(() -> new IllegalArgumentException("CondidatId " + condidatId + " not found"));
+        }).orElseThrow(() -> new IllegalArgumentException("CondidatId " + id_condidat + " not found"));
     }
 
     @DeleteMapping("/{condidatId}")

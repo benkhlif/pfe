@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
  
 @Entity
 @Table(name = "offre") 
@@ -26,20 +27,16 @@ private String secteur_d_activite;
 private String description;
 @NotBlank (message="le champ ne doit pas etre vide")
 private String exigences;
-@NotBlank (message="le champ ne doit pas etre vide")
-private LocalDate  date_publication;
-@NotBlank (message="le champ ne doit pas etre vide")
-private LocalDate  date_limite;
-@NotBlank (message="le champ ne doit pas etre vide")
-private Long salaire; 
+ private LocalDate  date_publication;
+ private LocalDate  date_limite;
+ private Long salaire; 
 @NotBlank (message="le champ ne doit pas etre vide")
 private String localisation;
-@NotBlank (message="le champ ne doit pas etre vide")
-private Long Postes_vacants;
+ private Long Postes_vacants;
 @NotBlank (message="le champ ne doit pas etre vide")
 private String contrat;
-@NotBlank (message="le champ ne doit pas etre vide")
-private List<String> mot_clés;
+@NotEmpty(message = "La liste de mots-clés ne doit pas être vide")
+ private List<String> mot_clés;
 
 
 

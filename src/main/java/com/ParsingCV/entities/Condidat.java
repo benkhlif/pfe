@@ -29,20 +29,15 @@ public class Condidat {
     @NotBlank (message="le champ ne doit pas etre vide")
     @Column(name = "email")
     private String email;
-    @NotBlank (message="le champ ne doit pas etre vide")
-    @Column(name = "telephone")
+     @Column(name = "telephone")
 	private Long telephone;
     @NotBlank (message="le champ ne doit pas etre vide")
     @Column(name = "diplome")
 	private String diplome;
-    @NotBlank (message="le champ ne doit pas etre vide")
-	private List<String> langues; 
-    @NotBlank (message="le champ ne doit pas etre vide")
-	private List<String> competences; 
-    @NotBlank (message="le champ ne doit pas etre vide")
-	private List<String> formations; 
-    @NotBlank (message="le champ ne doit pas etre vide")
-	private List<String> experience; 
+ 	private List<String> langues; 
+ 	private List<String> competences; 
+ 	private List<String> formations; 
+ 	private List<String> experience; 
 	
 	public Condidat() {
 		super();
