@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
  import com.ParsingCV.entities.Recrutement;
-import com.ParsingCV.entities.Recrutement_key;
-import com.ParsingCV.repository.Recrutement_Repository;
+ import com.ParsingCV.repository.Recrutement_Repository;
 
 import jakarta.validation.Valid;
 
@@ -37,7 +36,7 @@ public class Recrutement_Controller {
 	
 	@PutMapping("/{recrutementId}")
     @ResponseBody  
-	public Recrutement updaterecrutement(@PathVariable Recrutement_key recrutementId, @Valid @RequestBody Recrutement recrutementRequest) {
+	public Recrutement updaterecrutement(@PathVariable Long recrutementId, @Valid @RequestBody Recrutement recrutementRequest) {
 	    return recrutement_repository.findById(recrutementId).map(recrutement -> { 
 	    	recrutement.setScore(recrutementRequest.getScore());
 	    	recrutement.setDateCandidature(recrutementRequest.getDateCandidature());
@@ -52,7 +51,7 @@ public class Recrutement_Controller {
 
 	@DeleteMapping("/{recrutementId}")
     @ResponseBody  
-	public ResponseEntity<?> deleteRecrutement(@PathVariable Recrutement_key recrutementeId)
+	public ResponseEntity<?> deleteRecrutement(@PathVariable Long recrutementeId)
 	{ return recrutement_repository.findById(recrutementeId).map(recrutement -> { 
 		recrutement_repository.delete(recrutement); 
 	return ResponseEntity.ok().build();
@@ -60,7 +59,7 @@ public class Recrutement_Controller {
 			 recrutementeId + " not found"));
 	 }
 	 
-	 @GetMapping("/{RecrutementId}") public Recrutement getRecrutement(@PathVariable Recrutement_key recrutementId) { 
+	 @GetMapping("/{RecrutementId}") public Recrutement getRecrutement(@PathVariable Long recrutementId) { 
 	 Optional<Recrutement> o = recrutement_repository.findById(recrutementId);
 	 
 	 return o.get();}

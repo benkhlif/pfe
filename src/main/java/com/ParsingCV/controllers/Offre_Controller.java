@@ -51,7 +51,7 @@ public class Offre_Controller {
 	        offre.setLocalisation(offreRequest.getLocalisation());
 	        offre.setPostes_vacants(offreRequest.getPostes_vacants());
 	        offre.setContrat(offreRequest.getContrat());
-	        offre.setMot_clés(offreRequest.getMot_clés());
+	        offre.setMot_cles(offreRequest.getMot_cles());
 
 	        return offre_repository.save(offre);
 	    }).orElseThrow(() -> new IllegalArgumentException("OffreId " + offreId + " not found"));
@@ -67,9 +67,12 @@ public class Offre_Controller {
 offreId + " not found"));
 	 }
 	 
-	 @GetMapping("/{offreId}") public Offre getOffre(@PathVariable Long offreId) { 
-	 Optional<Offre> o = offre_repository.findById(offreId);
-	 
-	 return o.get();}
+	@GetMapping("/{offreId}")
+	public ResponseEntity<Offre> getOffre(@PathVariable Long offreId) { 
+	    Optional<Offre> o = offre_repository.findById(offreId);
+	    return o.map(offre -> ResponseEntity.ok().body(offre))
+	            .orElse(ResponseEntity.notFound().build());
+	}
+
 	
 }

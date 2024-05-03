@@ -1,14 +1,12 @@
 package com.ParsingCV.entities;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+ import java.time.LocalDate;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+ import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
+ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
@@ -16,21 +14,19 @@ import lombok.ToString;
 @Table(name = "Recrutement") 
 @Data
 @ToString
-public class Recrutement implements Serializable {
+public class Recrutement   {
 
-    private static final long serialVersionUID = -4052226728617667534L;
-    @EmbeddedId
- private Recrutement_key id ;
+    @Id 
+  private Long recrutementId ;
+    
     @ManyToOne
-    @MapsId("idOffre")
-    @JoinColumn(name = "offre_id")
+     @JoinColumn(name = "offre_id")
     private Offre offre;
     
    
 
 	@ManyToOne
-    @MapsId("idCondidat")
-    @JoinColumn(name = "condidat_id")
+     @JoinColumn(name = "condidat_id")
     private Condidat condidat;
     
     private double score;

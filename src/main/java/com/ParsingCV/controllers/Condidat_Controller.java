@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
+ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +19,8 @@ import com.ParsingCV.entities.Condidat;
 import com.ParsingCV.repository.Condidat_Repository;
 
 import jakarta.validation.Valid;
- 
-@Controller
-@RequestMapping("/condidat")
+ @Controller
+ @RequestMapping("/condidat")
 public class Condidat_Controller {
     @Autowired
     Condidat_Repository condidat_repository;
@@ -61,13 +60,14 @@ public class Condidat_Controller {
 	{ return condidat_repository.findById(condidatId).map(condidat -> { 
 		condidat_repository.delete(condidat); 
 	return ResponseEntity.ok().build();
-	 }).orElseThrow(() -> new IllegalArgumentException("ProviderId " + 
+	 }).orElseThrow(() -> new IllegalArgumentException("CondidatId  " + 
 			 condidatId + " not found"));
-	 }
-	 
-	 @GetMapping("/{condidatId}") public Condidat getcondidat(@PathVariable Long condidatId) { 
-	 Optional<Condidat> c = condidat_repository.findById(condidatId);
-	 
-	 return c.get();}
+	 } 
+
+    @GetMapping("/{condidatId}")
+    public ResponseEntity<Condidat> getCondidatById(@PathVariable Long condidatId) { 
+        Optional<Condidat> c = condidat_repository.findById(condidatId);
+        return c.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
 }
 

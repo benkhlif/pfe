@@ -39,14 +39,14 @@ private String localisation;
 @NotBlank (message="le champ ne doit pas etre vide")
 private String contrat;
 @NotEmpty(message = "La liste de mots-clés ne doit pas être vide")
- private List<String> mot_clés;
+ private String mot_cles;
 
 
 
 
 public Offre(Long id_offre, String titre, String entreprise, String secteur_d_activite, String description,
 		String exigences, LocalDate date_publication, LocalDate date_limite, Long salaire, String localisation,
-		Long postes_vacants, String contrat, List<String> mot_clés) {
+		Long postes_vacants, String contrat, String mot_cles) {
 	super();
 	this.id_offre = id_offre;
 	this.titre = titre;
@@ -60,7 +60,7 @@ public Offre(Long id_offre, String titre, String entreprise, String secteur_d_ac
 	this.localisation = localisation;
 	Postes_vacants = postes_vacants;
 	this.contrat = contrat;
-	this.mot_clés = mot_clés;
+	this.mot_cles = mot_cles;
 }
 
 
@@ -147,11 +147,11 @@ public String getContrat() {
 public void setContrat(String contrat) {
 	this.contrat = contrat;
 }
-public List<String> getMot_clés() {
-	return mot_clés;
+public String getMot_cles() {
+	return mot_cles;
 }
-public void setMot_clés(List<String> mot_clés) {
-	this.mot_clés = mot_clés;
+public void setMot_cles(String mot_cles) {
+	this.mot_cles = mot_cles;
 }
 
 
