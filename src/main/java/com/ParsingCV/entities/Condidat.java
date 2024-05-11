@@ -9,6 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -42,7 +43,7 @@ public class Condidat {
     
     @NotBlank(message = "le champ ne doit pas etre vide")
     @Column(name = "telephone")
-    @Pattern(regexp="[0-9]+", message="Le téléphone ne doit contenir que des chiffres")
+    @Pattern(regexp = "\\d+", message = "Le téléphone ne doit contenir que des chiffres")
     @Size(min = 8, max = 10, message = "Le téléphone doit contenir 10 chiffres")
     private String telephone;
     
@@ -65,8 +66,21 @@ public class Condidat {
 
     @Column(name = "experience")
     private String experience;  
+    
+    @Lob
+    @Column(name = "image", columnDefinition="LONGBLOB")
+    private byte[] photo;
 
-    public Condidat() {
+
+    public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public Condidat() {
         super();
     }
 
@@ -170,7 +184,32 @@ public class Condidat {
         return experience;
     }
 
-    public void setExperience(String experience) {
+    public Condidat(Long id_condidat, @NotBlank(message = "le champ ne doit pas etre vide") String nom,
+			@NotBlank(message = "le champ ne doit pas etre vide") String prenom,
+			@NotBlank(message = "le champ ne doit pas etre vide") String adresse,
+			@NotBlank(message = "le champ ne doit pas etre vide") @Email(message = "L'email doit être valide") String email,
+			@NotBlank(message = "le champ ne doit pas etre vide") @Pattern(regexp = "\\d+", message = "Le téléphone ne doit contenir que des chiffres") @Size(min = 8, max = 10, message = "Le téléphone doit contenir 10 chiffres") String telephone,
+			@NotBlank(message = "le champ ne doit pas etre vide") String diplome,
+			@NotBlank(message = "le champ ne doit pas etre vide") String langues,
+			@NotBlank(message = "le champ ne doit pas etre vide") String competences,
+			@NotBlank(message = "le champ ne doit pas etre vide") String formations,
+			@NotBlank(message = "le champ ne doit pas etre vide") String experience, byte[] photo) {
+		super();
+		this.id_condidat = id_condidat;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.email = email;
+		this.telephone = telephone;
+		this.diplome = diplome;
+		this.langues = langues;
+		this.competences = competences;
+		this.formations = formations;
+		this.experience = experience;
+		this.photo = photo;
+	}
+
+	public void setExperience(String experience) {
         this.experience = experience;
     }
 

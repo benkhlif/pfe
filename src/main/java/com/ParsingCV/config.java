@@ -11,7 +11,7 @@ public class config implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry corsRegistry) {
 
 		corsRegistry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST",
-				"PUT", "DELETE");
+				"PUT", "DELETE").allowedHeaders("Content-Type", "multipart/form-data").allowCredentials(true);
 
 	}
 
